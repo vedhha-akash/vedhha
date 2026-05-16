@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 600px; background: #0a0a0a; overflow: hidden; }
+
+  .poster {
+    width: 1200px;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  /* Full bleed model — right side */
+  .model-bg {
+    position: absolute;
+    right: 0; top: 0;
+    width: 750px; height: 100%;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .model-bg img {
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    height: 115%;
+    width: auto;
+    object-fit: cover;
+    object-position: top center;
+    filter: brightness(0.85) contrast(1.05);
+  }
+  /* gradient fade left */
+  .model-bg::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 380px;
+    background: linear-gradient(to right, #0a0a0a 30%, rgba(10,10,10,0.7) 70%, transparent);
+    z-index: 2;
+  }
+  /* gradient fade right edge */
+  .model-bg::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 60px;
+    background: linear-gradient(to left, #0a0a0a, transparent);
+    z-index: 2;
+  }
+
+  /* diagonal texture */
+  .texture {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg, transparent, transparent 50px,
+      rgba(200,131,42,0.018) 50px, rgba(200,131,42,0.018) 51px
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* borders */
+  .line-top    { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(to right, #c8832a, #f5c36a 50%, #c8832a); z-index: 20; }
+  .line-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: linear-gradient(to right, #c8832a, #f5c36a 50%, #c8832a); z-index: 20; }
+  .line-left   { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(to bottom, #c8832a, #f5c36a 50%, #c8832a); z-index: 20; }
+  .line-right  { position: absolute; right: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(to bottom, #c8832a, #f5c36a 50%, #c8832a); z-index: 20; }
+
+  /* corners */
+  .corner { position: absolute; width: 32px; height: 32px; border-color: #c8832a; border-style: solid; z-index: 21; }
+  .corner.tl { top: 20px; left: 20px; border-width: 2.5px 0 0 2.5px; }
+  .corner.tr { top: 20px; right: 20px; border-width: 2.5px 2.5px 0 0; }
+  .corner.bl { bottom: 20px; left: 20px; border-width: 0 0 2.5px 2.5px; }
+  .corner.br { bottom: 20px; right: 20px; border-width: 0 2.5px 2.5px 0; }
+
+  /* CONTENT — positioned over everything */
+  .content {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: stretch;
+  }
+
+  /* LEFT text panel */
+  .left {
+    width: 440px;
+    padding: 48px 30px 40px 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .est {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 7px;
+    color: #c8832a;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .brand {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 104px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -4px;
+    line-height: 0.85;
+    text-transform: uppercase;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.8);
+  }
+
+  .brand-sub {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 8px;
+    color: #c8832a;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 18px;
+  }
+
+  .divider { width: 60px; height: 2px; background: linear-gradient(to right, #c8832a, transparent); margin-bottom: 16px; }
+
+  .tagline {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 18px;
+    color: #fff;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .tagline span { color: #c8832a; }
+
+  .tagline-sub {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .cat {
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    border: 1px solid rgba(200,131,42,0.3);
+    padding: 5px 10px;
+  }
+
+  .url-box {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 3px;
+    background: rgba(200,131,42,0.14);
+    border: 1px solid rgba(200,131,42,0.5);
+    display: inline-block;
+    padding: 9px 20px;
+  }
+
+  /* bottom bar */
+  .bottom-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(200,131,42,0.18);
+  }
+
+  .qr-box {
+    background: #fff;
+    padding: 7px;
+    width: 70px; height: 70px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .qr-box::before { content: ''; position: absolute; inset: -2px; border: 1.5px solid #c8832a; }
+  .qr-box img { width: 56px; height: 56px; display: block; }
+
+  .contact { flex: 1; }
+  .scan-lbl { font-family: Arial, sans-serif; font-size: 7px; letter-spacing: 4px; color: #c8832a; text-transform: uppercase; margin-bottom: 3px; }
+  .phone { font-family: 'Arial Black', Arial, sans-serif; font-size: 16px; color: #fff; letter-spacing: 1px; }
+  .order-lbl { font-family: Arial, sans-serif; font-size: 7px; color: rgba(255,255,255,0.3); letter-spacing: 3px; text-transform: uppercase; margin-top: 2px; }
+
+  /* RIGHT overlay content (over model) */
+  .right-overlay {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 50px 40px 20px;
+    align-items: flex-end;
+  }
+
+  .new-drop {
+    text-align: right;
+  }
+  .drop-lbl { font-family: Arial, sans-serif; font-size: 8px; letter-spacing: 5px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 2px; }
+  .drop-name { font-family: 'Arial Black', Arial, sans-serif; font-size: 13px; letter-spacing: 5px; color: #c8832a; text-transform: uppercase; }
+
+  /* Floating stats — center dark zone */
+  .float-stats {
+    position: absolute;
+    left: 450px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 8;
+  }
+
+  .stat-pill {
+    background: rgba(10,10,10,0.85);
+    border: 1px solid rgba(200,131,42,0.4);
+    border-left: 3px solid #c8832a;
+    padding: 10px 20px;
+    text-align: left;
+    backdrop-filter: blur(6px);
+    min-width: 150px;
+  }
+  .stat-val {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 26px;
+    color: #fff;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .stat-val span { color: #c8832a; font-size: 14px; }
+  .stat-lbl {
+    font-family: Arial, sans-serif;
+    font-size: 7px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* hashtags bottom right */
+  .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-end;
+    max-width: 280px;
+  }
+  .ht {
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.35);
+    background: rgba(10,10,10,0.7);
+    border: 1px solid rgba(200,131,42,0.2);
+    padding: 4px 8px;
+    text-transform: uppercase;
+  }
+
+  /* big watermark */
+  .watermark {
+    position: absolute;
+    left: 5px; bottom: -30px;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(200,131,42,0.03);
+    letter-spacing: -12px;
+    z-index: 3;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* vertical gold line separator */
+  .v-sep {
+    position: absolute;
+    left: 435px;
+    top: 60px; bottom: 60px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(200,131,42,0.25) 30%, rgba(200,131,42,0.25) 70%, transparent);
+    z-index: 6;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <!-- Borders -->
+  <div class="line-top"></div>
+  <div class="line-bottom"></div>
+  <div class="line-left"></div>
+  <div class="line-right"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <!-- Texture -->
+  <div class="texture"></div>
+
+  <!-- Watermark -->
+  <div class="watermark">VEDHHA</div>
+
+  <!-- Full bleed model -->
+  <div class="model-bg">
+    <img src="/poster-model.png" alt="VEDHHA Model"/>
+  </div>
+
+  <!-- Vertical separator -->
+  <div class="v-sep"></div>
+
+  <!-- Stats in center dark area -->
+  <div class="float-stats">
+    <div class="stat-pill">
+      <div class="stat-val">240<span>gsm</span></div>
+      <div class="stat-lbl">Premium Cotton</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-val">₹399<span> onwards</span></div>
+      <div class="stat-lbl">Starting Price</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-val">33<span>% off</span></div>
+      <div class="stat-lbl">Limited Offer</div>
+    </div>
+  </div>
+
+  <!-- All content -->
+  <div class="content">
+
+    <!-- LEFT panel -->
+    <div class="left">
+      <div>
+        <div class="est">The Eklavya Wear — Est. 2024</div>
+        <div class="brand">VEDHHA</div>
+        <div class="brand-sub">Luxury Indian Streetwear</div>
+        <div class="divider"></div>
+        <div class="tagline">"Wear It Like<br/>You <span>Mean It."</span></div>
+        <div class="tagline-sub">The Eklavya Spirit</div>
+        <div class="cats">
+          <div class="cat">Gen Z Collection</div>
+          <div class="cat">Gentleman Clothes</div>
+          <div class="cat">Oversized Tees</div>
+          <div class="cat">Premium Hoodies</div>
+          <div class="cat">Limited Drops</div>
+        </div>
+        <div class="url-box">vedhha.com</div>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="qr-box">
+          <img src="/vedhha-qr.png" alt="QR"/>
+        </div>
+        <div class="contact">
+          <div class="scan-lbl">Scan to Shop &nbsp;·&nbsp; Call / WhatsApp</div>
+          <div class="phone">+91 91513 04494</div>
+          <div class="order-lbl">Order via Website</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT overlay -->
+    <div class="right-overlay">
+      <div class="new-drop">
+        <div class="drop-lbl">New Drop</div>
+        <div class="drop-name">Gen Z Collection</div>
+      </div>
+
+      <div class="hashtags">
+        <div class="ht">#VEDHHA</div>
+        <div class="ht">#EklavyaWear</div>
+        <div class="ht">#GenZCollection</div>
+        <div class="ht">#IndianStreetwear</div>
+        <div class="ht">#LimitedDrops</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

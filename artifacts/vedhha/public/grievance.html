@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+.box { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 20px; }
+h2 { color: #333; font-size: 16px; margin-bottom: 12px; }
+p { color: #444; font-size: 14px; line-height: 1.7; white-space: pre-wrap; }
+button { background: #1a73e8; color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-size: 15px; width: 100%; cursor: pointer; margin-top: 10px; }
+button:active { background: #1557b0; }
+.success { background: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 6px; text-align: center; display: none; margin-top: 8px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<h2 style="color:#1a73e8">BSNL Grievance Text</h2>
+<p style="font-size:13px;color:#888;margin-bottom:16px">Neeche text select karo aur copy karo, ya button dabao</p>
+
+<div class="box">
+  <p id="grievance-text">Subject: Non-Activation of DLT Account Despite Payment of Rs. 5900 - Ref. No. BL-1400079318
+
+I, Akash Sharma, am a registered business owner (Brand Name: VEDHHA - The Eklavya Wear, Mumbai) and wish to bring the following grievance to your kind attention.
+
+I had completed my DLT (Distributed Ledger Technology) registration on the BSNL UCC portal (ucc-bsnl.co.in) for the purpose of sending commercial SMS communications to my customers. The registration was completed and a payment of Rs. 5900 was made to BSNL. My Reference Number is BL-1400079318.
+
+Despite the successful payment, my account status continues to show Pending for Activation for several days now. I have taken the following steps to resolve this issue but received no assistance:
+
+1. Visited BSNL local office at Kandivali, Mumbai - staff had no knowledge of DLT registration process.
+2. Visited BSNL local office at Malad, Mumbai - same result, no help provided.
+3. Tried contacting support@ucc-bsnl.co.in via email - the email bounced back with DNS error. The support email address itself is non-functional.
+4. The BSNL UCC portal login page is also non-functional showing DNS error.
+
+This is causing significant financial and business loss. I request the concerned authority to either immediately activate my DLT account (Ref. BL-1400079318) or initiate a full refund of Rs. 5900.</p>
+</div>
+
+<button onclick="copyText()">Copy Karo</button>
+<div class="success" id="success-msg">✓ Copy ho gaya! Ab CPGRAMS mein paste karo.</div>
+
+<script>
+function copyText() {
+  const text = document.getElementById('grievance-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('success-msg').style.display = 'block';
+  }).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    document.getElementById('success-msg').style.display = 'block';
+  });
+}
+</script>
+</body></html>

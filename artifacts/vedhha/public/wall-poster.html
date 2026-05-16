@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>VEDHHA — Wall Poster</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@600;700&family=Barlow+Condensed:ital,wght@0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .print-btn {
+    background: #c9a84c;
+    color: #000;
+    border: none;
+    padding: 14px 44px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  /* ── POSTER ── */
+  .poster {
+    width: 794px;
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    background: #c9a84c;
+    padding: 10px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .top-bar span {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #0a0a0a;
+  }
+
+  /* ── BRAND HERO ── */
+  .hero {
+    background: #0a0a0a;
+    padding: 36px 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 220px;
+    color: rgba(201,168,76,0.05);
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: 10px;
+  }
+  .chip {
+    display: inline-block;
+    border: 1.5px solid #c9a84c;
+    color: #c9a84c;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    padding: 5px 18px;
+    margin-bottom: 14px;
+  }
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 130px;
+    letter-spacing: 22px;
+    color: #fff;
+    line-height: 0.92;
+    text-shadow: 0 0 80px rgba(201,168,76,0.25);
+    position: relative;
+    z-index: 2;
+  }
+  .brand-name em { color: #c9a84c; font-style: normal; }
+  .tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── RED BAND ── */
+  .red-band {
+    background: #8b1a1a;
+    padding: 8px 28px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  .red-band span {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #fff;
+  }
+
+  /* ── PRODUCTS GRID ── */
+  .products-label {
+    background: #0a0a0a;
+    text-align: center;
+    padding: 18px 0 12px;
+  }
+  .products-label span {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: rgba(201,168,76,0.8);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 0 4px 4px;
+  }
+
+  .product-card {
+    position: relative;
+    background: #1a1a1a;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+  }
+  .product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .product-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent 20%, rgba(0,0,0,0.92));
+    padding: 30px 14px 14px;
+  }
+  .product-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #fff;
+    line-height: 1;
+  }
+  .product-price {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #c9a84c;
+    margin-top: 2px;
+  }
+  .product-price s {
+    color: rgba(255,255,255,0.35);
+    font-weight: 400;
+    font-size: 12px;
+    margin-right: 4px;
+  }
+
+  /* ── QR ROW ── */
+  .qr-row {
+    background: #111;
+    border-top: 2px solid #c9a84c;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .qr-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .qr-img {
+    width: 88px;
+    height: 88px;
+    background: #fff;
+    padding: 5px;
+    flex-shrink: 0;
+  }
+  .qr-img img { width: 100%; height: 100%; display: block; }
+  .qr-info { display: flex; flex-direction: column; gap: 2px; }
+  .qr-scan {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #c9a84c;
+  }
+  .qr-url {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+  .qr-sub {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+
+  .badges {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+  }
+  .badge {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+  }
+  .badge.gold { background: #c9a84c; color: #000; }
+  .badge.outline { border: 1.5px solid rgba(201,168,76,0.5); color: #c9a84c; }
+
+  /* ── BOTTOM BAR ── */
+  .bottom-bar {
+    background: #c9a84c;
+    padding: 9px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .bottom-bar span {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: #0a0a0a;
+  }
+
+  @media print {
+    body { background: none; padding: 0; }
+    .print-btn { display: none; }
+    .poster { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ PRINT / SAVE AS PDF</button>
+
+<div class="poster">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span>LUXURY INDIAN STREETWEAR</span>
+    <span>EST. 2024 — MUMBAI</span>
+    <span>vedhha.com</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-text">VEDHHA</div>
+    <div class="chip">EKLAVYA WARRIOR COLLECTION 2026</div>
+    <div class="brand-name">VED<em>H</em>HA</div>
+    <div class="tagline">THE EKLAVYA WEAR</div>
+  </div>
+
+  <!-- RED BAND -->
+  <div class="red-band">
+    <span>🇮🇳 100% MADE IN INDIA</span>
+    <span>✦</span>
+    <span>FREE DELIVERY ALL OVER INDIA</span>
+    <span>✦</span>
+    <span>CASH ON DELIVERY AVAILABLE</span>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="products-label">
+    <span>NOW IN STOCK — ORDER TODAY</span>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <img src="/simple-things-dual.jpg" alt="Simple Things Tee"/>
+      <div class="product-overlay">
+        <div class="product-name">SIMPLE THINGS TEE</div>
+        <div class="product-price"><s>₹899</s> ₹699</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="/life-is-beautiful-back.png" alt="Life Is Beautiful Tee"/>
+      <div class="product-overlay">
+        <div class="product-name">LIFE IS BEAUTIFUL TEE</div>
+        <div class="product-price"><s>₹799</s> ₹599</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="/products/genz/muscles-tee-front.png" alt="Light Weight Baby Tee"/>
+      <div class="product-overlay">
+        <div class="product-name">LIGHT WEIGHT BABY TEE</div>
+        <div class="product-price"><s>₹599</s> ₹399</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="/products/genz/never-rival-tee-front.png" alt="Never Be My Rival Tee"/>
+      <div class="product-overlay">
+        <div class="product-name">NEVER BE MY RIVAL TEE</div>
+        <div class="product-price"><s>₹799</s> ₹599</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR ROW -->
+  <div class="qr-row">
+    <div class="qr-block">
+      <div class="qr-img">
+        <img src="/vedhha-qr.png" alt="QR"/>
+      </div>
+      <div class="qr-info">
+        <div class="qr-scan">SCAN TO ORDER NOW</div>
+        <div class="qr-url">VEDHHA.COM</div>
+        <div class="qr-sub">ORDER ONLINE · FAST DELIVERY · COD AVAILABLE</div>
+      </div>
+    </div>
+    <div class="badges">
+      <div class="badge gold">ORDER NOW</div>
+      <div class="badge outline">SHIPS PAN INDIA</div>
+      <div class="badge outline">EASY RETURNS</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <span>VEDHHA — THE EKLAVYA WEAR</span>
+    <span>● MUMBAI, INDIA ●</span>
+    <span>vedhhatheeklavyawear@gmail.com</span>
+  </div>
+
+</div>
+</body>
+</html>

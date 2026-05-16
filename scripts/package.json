@@ -1,0 +1,19 @@
+{
+  "name": "@workspace/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "hello": "tsx ./src/hello.ts",
+    "bsnl-pdf": "tsx ./src/generate-bsnl-pdf.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/pdfkit": "^0.17.6",
+    "tsx": "catalog:"
+  },
+  "dependencies": {
+    "pdfkit": "^0.18.0"
+  }
+}

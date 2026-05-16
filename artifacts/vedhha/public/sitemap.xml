@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://vedhha.com/</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://vedhha.com/vedhha-logo.png</image:loc>
+      <image:title>VEDHHA — The Eklavya Wear Logo</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://vedhha.com/founder</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://vedhha.com/founder/akash-1.png</image:loc>
+      <image:title>Aakash Sharma — Founder and CEO of VEDHHA The Eklavya Wear</image:title>
+      <image:caption>Aakash Sharma (Eklavya), Founder &amp; CEO of VEDHHA — The Eklavya Wear, luxury Indian streetwear brand Mumbai</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://vedhha.com/founder/akash-2.jpg</image:loc>
+      <image:title>Akash Sharma VEDHHA Brand Founder Indian Streetwear</image:title>
+      <image:caption>Aakash Sharma, founder of VEDHHA (The Eklavya Wear), premium Indian streetwear brand 2024</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://vedhha.com/founder/akash-3.jpg</image:loc>
+      <image:title>Aakash Sharma Eklavya VEDHHA CEO Mumbai</image:title>
+      <image:caption>Aakash Sharma known as Eklavya — Founder of VEDHHA The Eklavya Wear, Mumbai India</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://vedhha.com/founder/akash-4.jpg</image:loc>
+      <image:title>Aakash Sharma VEDHHA Streetwear Brand Owner</image:title>
+      <image:caption>Aakash Sharma — CEO and Owner of VEDHHA The Eklavya Wear Indian streetwear brand</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://vedhha.com/founder/akash-5.jpg</image:loc>
+      <image:title>Aakash Sharma vedhha.com Founder Gen Z Fashion India</image:title>
+      <image:caption>Aakash Sharma — Founder of VEDHHA at vedhha.com, Gen Z Indian streetwear brand 2024</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://vedhha.com/aakash-sharma</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://vedhha.com/#collections</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://vedhha.com/#studio</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://vedhha.com/#contact</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://vedhha.com/#giftcards</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,10 @@
+<svg width="500" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="200" fill="#0a0a0a"/>
+  <!-- bracket left -->
+  <text x="55" y="115" font-family="Arial, sans-serif" font-size="80" fill="#c8832a" font-weight="100">[</text>
+  <!-- main text -->
+  <text x="250" y="108" font-family="Arial Black, sans-serif" font-size="58" font-weight="900" fill="white" text-anchor="middle" dominant-baseline="middle" letter-spacing="10">VEDHHA</text>
+  <!-- bracket right -->
+  <text x="430" y="115" font-family="Arial, sans-serif" font-size="80" fill="#c8832a" font-weight="100">]</text>
+  <text x="250" y="155" font-family="Arial, sans-serif" font-size="10" fill="#c8832a" text-anchor="middle" letter-spacing="8">THE EKLAVYA WEAR</text>
+</svg>

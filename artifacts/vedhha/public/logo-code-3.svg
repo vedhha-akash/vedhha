@@ -1,0 +1,8 @@
+<svg width="500" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="200" fill="white"/>
+  <!-- V icon -->
+  <polygon points="60,40 90,140 120,40 130,40 95,155 85,155 50,40" fill="#c8832a"/>
+  <!-- Text -->
+  <text x="280" y="90" font-family="Arial Black, sans-serif" font-size="62" font-weight="900" fill="#0a0a0a" text-anchor="middle" dominant-baseline="middle" letter-spacing="6">VEDHHA</text>
+  <text x="280" y="148" font-family="Arial, sans-serif" font-size="11" fill="#888" text-anchor="middle" letter-spacing="7">THE EKLAVYA WEAR</text>
+</svg>
