@@ -1,7 +1,8 @@
 {
-  "buildCommand": "pnpm --filter @workspace/vedhha run build:vercel",
-  "outputDirectory": "artifacts/vedhha/dist/public",
-  "installCommand": "pnpm install",
+  "rootDirectory": "artifacts/vedhha",
+  "buildCommand": "npx vite build --config vite.config.vercel.ts",
+  "outputDirectory": "dist/public",
+  "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/api/:path*",
