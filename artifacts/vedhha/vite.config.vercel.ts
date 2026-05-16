@@ -12,7 +12,7 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "public"),
       "@workspace/api-client-react": path.resolve(
         import.meta.dirname,
-        "../../lib/api-client-react/src/index.ts"
+        "src/vendor/api-client-react/index.ts"
       ),
     },
     dedupe: ["react", "react-dom"],
