@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npx vite build --config vite.config.vercel.ts",
+  "outputDirectory": "dist/public",
+  "installCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://RAILWAY_BACKEND_URL/api/:path*"
+    }
+  ]
+}
